@@ -13,6 +13,11 @@ public class MainController {
         return "hello";
     }
 
+    @GetMapping("/layout")
+    public String layout(){
 
+        //return "layout/layout";
+        return "main";
+    }
 
 }
