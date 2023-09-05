@@ -8,19 +8,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+          });
+          calendar.render();
+        });
 
+    </script>
 </head>
 <body>
     <div id="container">
-        <h3>Content 영역입니다.</h3>
-
-
-
+        <h3>Schedule 영역입니다.</h3>
     </div>
-    <div id="grid"></div>
-
-    <script th:inline="javascript" type="text/javascript" th:src="@{/js/grid/test_grid.js}"></script>
-
-
+    <div id='calendar'></div>
 </body>
 </html>
