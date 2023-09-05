@@ -23,9 +23,9 @@ public class Board {
     @Column(nullable = true)
     private String writer; // 작성자
     @Column(nullable = true)
-    private int view_cnt; // 조회 수
+    private int viewCnt; // 조회 수
     @Column(nullable = true)
-    private char delete_yn; // 삭제 여부
+    private char deleteYn; // 삭제 여부
 
     @CreatedDate
     private LocalDateTime createdAt;

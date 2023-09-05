@@ -5,9 +5,9 @@ import com.example.cm.data.entity.User;
 public interface UserDAO {
     User insertUser(User user);
 
-    User selectUser(Long user_id);
+    User selectUser(Long userId);
 
-    User updateUserName(Long user_id, String user_name) throws Exception;
+    User updateUserName(Long userId, String userName) throws Exception;
 
-    void deleteUser(Long user_id) throws Exception;
+    void deleteUser(Long userId) throws Exception;
 }

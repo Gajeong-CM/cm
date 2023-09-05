@@ -26,4 +26,10 @@ public class MainController {
         return "map";
     }
 
+    @GetMapping("/schedule")
+    public String getSchedule(){
+
+        return "schedule";
+    }
+
 }

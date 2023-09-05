@@ -21,14 +21,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO getUser(Long user_id) {
-        User user = userDAO.selectUser(user_id);
+    public UserResponseDTO getUser(Long userId) {
+        User user = userDAO.selectUser(userId);
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
-        userResponseDTO.setUser_id(user.getUser_id());
-        userResponseDTO.setUser_name(user.getUser_name());
+        userResponseDTO.setUserId(user.getUserId());
+        userResponseDTO.setUserName(user.getUserName());
         userResponseDTO.setPassword(user.getPassword());
-        userResponseDTO.setUser_role(user.getUser_role());
+        userResponseDTO.setUserRole(user.getUserRole());
 
         return userResponseDTO;
     }
@@ -36,38 +36,38 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO saveUser(UserDTO userDTO) {
         User user = new User();
-        user.setUser_name(userDTO.getUser_name());
+        user.setUserName(userDTO.getUserName());
         user.setPassword(userDTO.getPassword());
-        user.setUser_role(userDTO.getUser_role());
+        user.setUserRole(userDTO.getUserRole());
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
 
         User savedUser = userDAO.insertUser(user);
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
-        userResponseDTO.setUser_id(savedUser.getUser_id());
-        userResponseDTO.setUser_name(savedUser.getUser_name());
+        userResponseDTO.setUserId(savedUser.getUserId());
+        userResponseDTO.setUserName(savedUser.getUserName());
         userResponseDTO.setPassword(savedUser.getPassword());
-        userResponseDTO.setUser_role(savedUser.getUser_role());
+        userResponseDTO.setUserRole(savedUser.getUserRole());
 
         return userResponseDTO;
     }
 
     @Override
-    public UserResponseDTO changeUserName(Long user_id, String user_name) throws Exception {
-        User changeUser = userDAO.updateUserName(user_id, user_name);
+    public UserResponseDTO changeUserName(Long userId, String userName) throws Exception {
+        User changeUser = userDAO.updateUserName(userId, userName);
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
-        userResponseDTO.setUser_id(changeUser.getUser_id());
-        userResponseDTO.setUser_name(changeUser.getUser_name());
+        userResponseDTO.setUserId(changeUser.getUserId());
+        userResponseDTO.setUserName(changeUser.getUserName());
         userResponseDTO.setPassword(changeUser.getPassword());
-        userResponseDTO.setUser_role(changeUser.getUser_role());
+        userResponseDTO.setUserRole(changeUser.getUserRole());
 
         return userResponseDTO;
     }
 
     @Override
-    public void deleteUser(Long user_id) throws Exception {
-        userDAO.deleteUser(user_id);
+    public void deleteUser(Long userId) throws Exception {
+        userDAO.deleteUser(userId);
     }
 }
