@@ -26,21 +26,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User selectUser(Long userId) {
-        User selectUser = userRepository.getReferenceById(userId);
+    public User selectUser(Long id) {
+        User selectUser = userRepository.getReferenceById(id);
 
         return selectUser;
     }
 
     @Override
-    public User updateUserName(Long userId, String userName) throws Exception {
-        Optional<User> selectedUser = userRepository.findById(userId);
+    public User updateUserName(Long id, String name) throws Exception {
+        Optional<User> selectedUser = userRepository.findById(id);
 
         User updatedUser;
         if(selectedUser.isPresent()) {
             User user = selectedUser.get();
 
-            user.setUserName(userName);
+            user.setName(name);
             user.setUpdatedAt(LocalDateTime.now());
 
             updatedUser = userRepository.save(user);
@@ -52,8 +52,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void deleteUser(Long userId) throws Exception {
-        Optional<User> selectedUser = userRepository.findById(userId);
+    public void deleteUser(Long id) throws Exception {
+        Optional<User> selectedUser = userRepository.findById(id);
 
         if(selectedUser.isPresent()) {
             User user = selectedUser.get();

@@ -15,21 +15,27 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @Column(nullable = true)
-    private String userName;
+    private String name;
 
     @Column(nullable = true)
     private String password;
 
     @Column(nullable = true)
-    private String userRole;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public enum Role {
+        USER,
+        ADMIN
+    }
 
 }
