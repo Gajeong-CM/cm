@@ -1,7 +1,6 @@
 package com.example.cm.service.impl;
 
 import com.example.cm.data.dao.UserDAO;
-import com.example.cm.data.dao.impl.UserDAOImpl;
 import com.example.cm.data.dto.UserDTO;
 import com.example.cm.data.dto.UserResponseDTO;
 import com.example.cm.data.entity.User;

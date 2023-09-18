@@ -4,15 +4,8 @@
   "use strict";
 
     // MENU
-    $('#sidebarMenu .nav-link').on('click',function(e){
-
-      $('#sidebarMenu .nav-link .active').removeClass('active');
-//      $('#sidebarMenu .nav-link').addClass('active');
-
-        console.log('abc')
+    $('#sidebarMenu .nav-link').on('click',function(){
       $("#sidebarMenu").collapse('hide');
-      e.preventDefault();
-
     });
     
     // CUSTOM LINK

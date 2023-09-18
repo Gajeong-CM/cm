@@ -1,7 +1,11 @@
 package com.example.cm.data.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,7 +15,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "board")
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@SQLDelete(sql = "UPDATE board SET delete_yn = true WHERE id = ?")
 public class Board {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +30,21 @@ public class Board {
     @Column(nullable = true)
     private String writer; // 작성자
     @Column(nullable = true)
-    private int viewCnt; // 조회 수
+    private Integer viewCnt; // 조회 수
     @Column(nullable = true)
-    private char deleteYn; // 삭제 여부
+    private Boolean deleteYn; // 삭제 여부
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void setDefaultValues() {
+        this.viewCnt = 0;
+        this.deleteYn = false;
+        this.createdAt = LocalDateTime.now();
+    }
+
 }

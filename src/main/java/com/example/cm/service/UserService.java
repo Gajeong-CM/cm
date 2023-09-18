@@ -4,12 +4,12 @@ import com.example.cm.data.dto.UserDTO;
 import com.example.cm.data.dto.UserResponseDTO;
 
 public interface UserService {
-    UserResponseDTO getUser(Long user_id);
+    UserResponseDTO getUser(Long userId);
 
     UserResponseDTO saveUser(UserDTO userDTO);
 
-    UserResponseDTO changeUserName(Long user_id, String user_name) throws Exception;
+    UserResponseDTO changeUserName(Long userId, String userName) throws Exception;
 
-    void deleteUser(Long user_id) throws Exception;
+    void deleteUser(Long userId) throws Exception;
 
 }

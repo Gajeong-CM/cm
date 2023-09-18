@@ -1,29 +1,67 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang='en'
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}"
-      layout:fragment="Content"
->
+      layout:fragment="Content">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset='utf-8' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var calendarEl = document.getElementById('calendar');
-          var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-          });
-          calendar.render();
-        });
 
-    </script>
 </head>
-<body>
-    <div id="container">
-        <h3>Schedule 영역입니다.</h3>
-    </div>
-    <div id='calendar'></div>
-</body>
+    <body>
+        <div id='calendar'></div>
+
+        <!-- modal 추가 -->
+        <div class="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">일정을 입력하세요.</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="taskId" class="col-form-label">일정 내용</label>
+                            <input type="text" class="form-control" id="calendar_title" name="calendar_title">
+                            <label for="taskId" class="col-form-label">그룹 ID</label>
+                            <input type="text" class="form-control" id="calendar_group_id" name="calendar_group_id">
+                            <label for="taskId" class="col-form-label">시작 날짜</label>
+                            <input type="date" class="form-control" id="calendar_start_date" name="calendar_start_date">
+                            <label for="taskId" class="col-form-label">종료 날짜</label>
+                            <input type="date" class="form-control" id="calendar_end_date" name="calendar_end_date">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" id="addCalendar">추가</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                id="sprintSettingModalClose">취소</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="button" id="deleteSchedule">삭제</button>
+        </div>
+
+        <script>
+            // 취소 버튼으로 모달 숨기기
+            $('#sprintSettingModalClose').on('click', function(){
+                $('#calendarModal').modal('hide');
+            });
+
+            // 일정 삭제
+            $('#deleteSchedule').on('click', function() {
+                let id = prompt('삭제할 일정 id');
+                $.ajax({
+                    url: "/schedule/data",
+                    method: "DELETE",
+                    dataType: "json",
+                    data: { "id" : id }
+                })
+            });
+        </script>
+
+        <script th:inline="javascript" type="text/javascript" th:src="@{/js/fullCalendar.js}"></script>
+    </body>
 </html>
