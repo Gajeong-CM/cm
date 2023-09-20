@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ScheduleDTO {
 
+    private Long id;
+
     private String groupId;
 
     private String title;
@@ -32,10 +34,13 @@ public class ScheduleDTO {
     // DTO -> Entity
     public Schedule toEntity() {
         return Schedule.builder()
+                .id(id)
                 .groupId(groupId)
                 .title(title)
                 .start(start)
                 .end(end)
+                .createdAt(createdAt)
+                .updatedAt(updatedAt)
                 .build();
     }
 

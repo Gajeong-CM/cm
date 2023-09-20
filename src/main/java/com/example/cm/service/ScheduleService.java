@@ -13,6 +13,6 @@ public interface ScheduleService {
 
     public void updateSchedule(ScheduleDTO scheduleDTO);
 
-    public void deleteSchedule(Integer id);
+    public void deleteSchedule(Long id);
 
 }
